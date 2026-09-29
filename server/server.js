@@ -6,7 +6,9 @@ loadEnvFile();
 
 const { Pool } = pg;
 const app = express();
-const pool = new Pool();
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
 const port = Number(process.env.PORT ?? 3000);
 const receptionistStatuses = ['Scheduled', 'Arrived', 'Cancelled'];
 const clinicianStatuses = ['In Consultation', 'Completed'];
