@@ -2,7 +2,7 @@ import { loadEnvFile } from 'node:process';
 import express from 'express';
 import pg from 'pg';
 
-loadEnvFile();
+loadEnvFile({ ifFileExists: true });
 
 const { Pool } = pg;
 const app = express();
