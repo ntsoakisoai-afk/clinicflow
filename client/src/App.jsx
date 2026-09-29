@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+const API_URL = import.meta.env.VITE_API_URL || '';
+
 // Keep the demonstration fixed to one fictional clinic day
 const DEMO_DATE = '2026-09-16';
 const emptyPatient = { fullName: '', phone: '', dateOfBirth: '' };
@@ -19,7 +21,7 @@ export default function App() {
 async function loadData() {
   try {
     const response = await fetch(
-      `/api/data?date=${encodeURIComponent(date)}&q=${encodeURIComponent(search)}`,
+      `${API_URL}/api/data?date=${encodeURIComponent(date)}&q=${encodeURIComponent(search)}`,
     );
 
     const text = await response.text();
