@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 
+const API_URL =
+  import.meta.env.VITE_API_URL || 'http://localhost:3000';
+
 // Keep the demonstration fixed to one fictional clinic day
 const DEMO_DATE = '2026-09-16';
 const emptyPatient = { fullName: '', phone: '', dateOfBirth: '' };
@@ -19,7 +22,7 @@ export default function App() {
 async function loadData() {
   try {
     const response = await fetch(
-      `/api/data?date=${encodeURIComponent(date)}&q=${encodeURIComponent(search)}`,
+      `${API_URL}/api/data?date=${encodeURIComponent(date)}&q=${encodeURIComponent(search)}`,
     );
 
     const text = await response.text();
@@ -49,7 +52,7 @@ async function loadData() {
   }, [date, search, refreshKey]);
 
 async function request(path, options) {
-  const response = await fetch(path, {
+  const response = await fetch(`${API_URL}${path}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
